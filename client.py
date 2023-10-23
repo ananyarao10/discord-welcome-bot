@@ -20,7 +20,18 @@ client = discord.Client(intents=intents)
 @client.event
 # on_ready() is called when bot has finished login and setup
 async def on_ready():
-    print(f'{client.user} has connected to Discord!')
+    print("{client.user} has connected to Ananya's Discord server!")
+
+# register an event
+@client.event
+# on_ready() is called when new member joins server
+async def on_member_join(member):
+    # create a direct message to send the user
+    await member.create_dm()
+    # send this message to the user
+    await member.dm_channel.send(
+        f"Hi {member.name}, welcome to my Discord server!"
+    )
 
 # run bot with login token
 client.run(DISCORD_TOKEN)
