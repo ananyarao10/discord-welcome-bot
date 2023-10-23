@@ -9,11 +9,12 @@ from dotenv import load_dotenv
 # loads variables from env file into actual environment
 load_dotenv()
 # hide discord token in env file away from users
-TOKEN = os.getenv('DISCORD_TOKEN')
+DISCORD_TOKEN = os.getenv('DISCORD_TOKEN')
 
 # create an instance of Client()
 # a client represents a connection to discord and interacts w/ discord api
-client = discord.Client()
+intents = discord.Intents.default()
+client = discord.Client(intents=intents)
 
 # register an event
 @client.event
@@ -22,4 +23,4 @@ async def on_ready():
     print(f'{client.user} has connected to Discord!')
 
 # run bot with login token
-client.run(TOKEN)
+client.run(DISCORD_TOKEN)
